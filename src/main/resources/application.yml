@@ -1,0 +1,36 @@
+server:
+  port: ${AUTH_SERVICE_PORT:8081}
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: auth-service-api
+
+  datasource:
+    url: jdbc:postgresql://${DB_URI:localhost}:${DB_PORT:5432}/notification
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        default_schema: auth_service_db
+    open-in-view: false
+
+  kafka:
+    consumer:
+      group-id: ${KAFKA_GROUP_ID:1001}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      bootstrap-servers: localhost:9092
+
+  security:
+    security-key: ${SECURITY_KEY:6c9c5acb3e09048b863a865d1b524c935b9cfe8c401a1d5396cd63749e02f89427d9543b31d9c0ea1e88089f8412932e2886b273d7bc7920bea814b847dc7ad1}
+    token-expiration: ${TOKEN_EXPIRATION:14400000}
