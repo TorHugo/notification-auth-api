@@ -68,8 +68,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch
-          create_annotated_tag: true
+          custom_tag: v$((CURRENT_VERSION+1))
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
