@@ -56,12 +56,11 @@ jobs:
           arguments: bootJar
           gradle-home-cache-cleanup: true
 
-      - name: Get current version
-        id: current_version
+      - name: Extract version from build.gradle
+        id: extract_version
         run: |
-          CURRENT_TAG=$(git describe --tags --abbrev=0)
-          echo "Current tag: $CURRENT_TAG"
-          echo "CURRENT_VERSION=${CURRENT_TAG#v}" >> $GITHUB_ENV
+          VERSION=$(grep version build.gradle | cut -d\" -f2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Increment version
         id: increment_version
@@ -71,6 +70,7 @@ jobs:
           default_bump: patch
           create_annotated_tag: true
           release_type: pre-release
+          version: ${{ env.VERSION }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
