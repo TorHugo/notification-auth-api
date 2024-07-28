@@ -61,7 +61,7 @@ public class UserDetailsImpl implements UserDetails {
                                         final List<GrantedAuthority> authorityList) {
         return new UserDetailsImpl(
                 account.getEmail().value(),
-                account.getPassword().value(),
+                account.getPassword(),
                 account.isActive(),
                 account.isConfirmed(),
                 authorityList

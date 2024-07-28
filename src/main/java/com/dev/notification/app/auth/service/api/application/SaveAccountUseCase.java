@@ -14,10 +14,10 @@ import java.util.Objects;
 public class SaveAccountUseCase {
     private final AccountGateway accountGateway;
 
-    public String execute(final CreateAccountDTO saveAccount){
+    public Account execute(final CreateAccountDTO saveAccount){
         final var existsAccount = accountGateway.findAccountByEmail(saveAccount.getEmail());
         if (Objects.nonNull(existsAccount)) throw new IllegalArgumentException("This account already exists!");
         final var account = Account.create(saveAccount.getEmail(), saveAccount.getPassword(), saveAccount.isAdmin());
-        return accountGateway.save(account).getEmail().value();
+        return accountGateway.save(account);
     }
 }

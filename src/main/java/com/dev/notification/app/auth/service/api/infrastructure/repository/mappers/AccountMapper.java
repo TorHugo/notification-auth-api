@@ -10,7 +10,7 @@ public class AccountMapper {
     public AccountEntity toAggregate(final Account account){
         return new AccountEntity(
                 account.getEmail().value(),
-                account.getPassword().value(),
+                account.getPassword(),
                 account.isActive(),
                 account.isAdmin(),
                 account.isConfirmed(),

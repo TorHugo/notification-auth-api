@@ -1,7 +1,6 @@
 package com.dev.notification.app.auth.service.api.domain;
 
 import com.dev.notification.app.auth.service.api.domain.value.object.Email;
-import com.dev.notification.app.auth.service.api.domain.value.object.Password;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 public class Account {
 
     private Email email;
-    private Password password;
+    private String password;
     private boolean active;
     private boolean admin;
     private boolean confirmed;
@@ -29,7 +28,7 @@ public class Account {
                    final LocalDateTime updatedAt,
                    final LocalDateTime lastAccess) {
         this.email = new Email(email);
-        this.password = new Password(password);
+        this.password = password;
         this.active = active;
         this.admin = admin;
         this.confirmed = confirmed;

@@ -22,12 +22,12 @@ public class KafkaCreateAccountEventTopic {
 
     @KafkaListener(topics = "CreateAccountEventTopic", groupId = "1001", containerFactory = "factory")
     public void listener(final String message,
-                            final Acknowledgment acknowledgment) {
+                         final Acknowledgment acknowledgment) {
         log.info("Receiving Message. This topic: CreateAccountEventTopic.");
         try {
             final var event = gson.fromJson(message, CreateAccountDTO.class);
-            final var identifier = saveAccountUseCase.execute(event);
-            eventPublisher.publishEvent(new CreateAccountEvent(this, identifier, message));
+            final var account = saveAccountUseCase.execute(event);
+            eventPublisher.publishEvent(new CreateAccountEvent(this, account.getEmail().value(), message));
         } catch (Exception e) {
             log.error("Error processing message: {}", message, e);
         } finally {

@@ -13,10 +13,10 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 
+
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 import static io.jsonwebtoken.Jwts.builder;
 import static io.jsonwebtoken.Jwts.parser;
@@ -69,6 +69,24 @@ public class JwtTokenUtils {
                 .getSubject();
     }
 
+    public Object getAuthoritiesFromToken(String token) {
+        final var claims = parser()
+                .verifyWith(getSigningKey(secret))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+        return claims.get("authorities");
+    }
+
+    public Date getExpirationDate(final String token) {
+        return parser()
+                .verifyWith(getSigningKey(secret))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getExpiration();
+    }
+
     public ResponseCookie generateToken(final UserDetailsImpl user) {
         final var token = generateTokenFromUser(user);
         return from(COOKIE, token)
@@ -98,6 +116,7 @@ public class JwtTokenUtils {
                 .claim("email", user.getEmail())
                 .claim("confirmed", user.isConfirmed())
                 .claim("active", user.isActive())
+                .claim("authorities", user.getAuthorities())
                 .subject(user.getEmail())
                 .issuedAt(new Date())
                 .expiration(new Date(dateNow.getTime() + timeOfExpiration))
