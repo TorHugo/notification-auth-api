@@ -21,7 +21,7 @@ public interface AuthAPI {
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<?> logout();
 
-    @PostMapping("/validate")
+    @PostMapping("/validate-token")
     @ResponseStatus(HttpStatus.OK)
     ValidToken validate(final HttpServletRequest request);
 }
