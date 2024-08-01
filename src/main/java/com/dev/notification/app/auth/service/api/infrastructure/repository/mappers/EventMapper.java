@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.infrastructure.repository.mappers;
 
-import com.dev.notification.app.auth.service.api.domain.Event;
+import com.dev.notification.app.auth.service.api.domain.entity.Event;
 import com.dev.notification.app.auth.service.api.infrastructure.repository.models.EventEntity;
 import org.springframework.stereotype.Component;
 

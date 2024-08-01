@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.infrastructure.security.models;
 
-import com.dev.notification.app.auth.service.api.domain.Account;
+import com.dev.notification.app.auth.service.api.domain.entity.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

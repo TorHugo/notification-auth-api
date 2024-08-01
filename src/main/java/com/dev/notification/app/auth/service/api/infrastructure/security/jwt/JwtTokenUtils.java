@@ -107,8 +107,8 @@ public class JwtTokenUtils {
     }
 
     private String generateTokenFromUser(final UserDetailsImpl user) {
-        if (!user.isActive())
-            throw new AccessDeniedException("Account Expired!");
+        if (!user.isActive()) throw new AccessDeniedException("Account is expired!");
+        if (!user.isConfirmed()) throw new AccessDeniedException("Account is not confirmed!");
         final var dateNow = new Date();
         final var timeOfExpiration  = expiration;
 

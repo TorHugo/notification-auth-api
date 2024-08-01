@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.domain.gateway;
 
-import com.dev.notification.app.auth.service.api.domain.Account;
+import com.dev.notification.app.auth.service.api.domain.entity.Account;
 
 public interface AccountGateway {
     Account save(final Account value);

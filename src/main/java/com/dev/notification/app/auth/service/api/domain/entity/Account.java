@@ -1,4 +1,4 @@
-package com.dev.notification.app.auth.service.api.domain;
+package com.dev.notification.app.auth.service.api.domain.entity;
 
 import com.dev.notification.app.auth.service.api.domain.value.object.Email;
 import lombok.Getter;
@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @Setter
 public class Account {
 
-    private Email email;
-    private String password;
-    private boolean active;
-    private boolean admin;
+    private final Email email;
+    private final String password;
+    private final boolean active;
+    private final boolean admin;
     private boolean confirmed;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime lastAccess;
 
@@ -54,7 +54,12 @@ public class Account {
         return new Account(email, password, active, admin, confirmed, createdAt, updatedAt, lastAccess);
     }
 
-    public void setLastAccess() {
+    public void updateLastAccess() {
         this.lastAccess = LocalDateTime.now();
+    }
+
+    public void isConfirmedAccount(){
+        this.confirmed = true;
+        this.updatedAt = LocalDateTime.now();
     }
 }

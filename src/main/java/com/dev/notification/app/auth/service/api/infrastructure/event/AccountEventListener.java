@@ -1,16 +1,16 @@
 package com.dev.notification.app.auth.service.api.infrastructure.event;
 
-import com.dev.notification.app.auth.service.api.domain.Event;
+import com.dev.notification.app.auth.service.api.domain.entity.Event;
 import com.dev.notification.app.auth.service.api.domain.enums.EventType;
 import com.dev.notification.app.auth.service.api.domain.exception.template.EventException;
 import com.dev.notification.app.auth.service.api.domain.gateway.EventGateway;
+import com.dev.notification.app.auth.service.api.infrastructure.event.models.ConfirmedAccountEvent;
 import com.dev.notification.app.auth.service.api.infrastructure.event.models.CreateAccountEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
 @RequiredArgsConstructor
 public class AccountEventListener {
@@ -18,7 +18,6 @@ public class AccountEventListener {
 
     @EventListener
     public void handlerCreateAccount(final CreateAccountEvent createAccountEvent){
-        log.info("Event: {}", createAccountEvent);
         try {
             final var event = Event.create(
                     createAccountEvent.getAggregateIdentifier(),
@@ -27,7 +26,20 @@ public class AccountEventListener {
             );
             eventGateway.save(event);
         } catch (final Exception e) {
-            log.error("Exception creating event: {}", e.getMessage());
+            throw new EventException("Error creating event!");
+        }
+    }
+
+    @EventListener
+    public void handlerConfirmedAccount(final ConfirmedAccountEvent createAccountEvent){
+        try {
+            final var event = Event.create(
+                    createAccountEvent.getAggregateIdentifier(),
+                    EventType.CONFIRMED_ACCOUNT_EVENT,
+                    createAccountEvent.getTransaction()
+            );
+            eventGateway.save(event);
+        } catch (final Exception e) {
             throw new EventException("Error creating event!");
         }
     }

@@ -3,8 +3,7 @@ package com.dev.notification.app.auth.service.api.infrastructure.messaging.model
 import lombok.Data;
 
 @Data
-public class CreateAccountDTO {
+public class ConfirmedAccountTopic {
     private String email;
-    private String password;
-    private boolean admin;
+    private boolean confirmed;
 }

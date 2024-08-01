@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.infrastructure.gateway;
 
-import com.dev.notification.app.auth.service.api.domain.Event;
+import com.dev.notification.app.auth.service.api.domain.entity.Event;
 import com.dev.notification.app.auth.service.api.domain.gateway.EventGateway;
 import com.dev.notification.app.auth.service.api.infrastructure.repository.EventRepository;
 import com.dev.notification.app.auth.service.api.infrastructure.repository.mappers.EventMapper;

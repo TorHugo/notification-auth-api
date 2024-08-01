@@ -11,7 +11,7 @@ public class LastAccessUseCase {
 
     public void execute(final String value) {
         final var account = accountGateway.findAccountByEmailWithThrows(value);
-        account.setLastAccess();
+        account.updateLastAccess();
         accountGateway.save(account);
     }
 }

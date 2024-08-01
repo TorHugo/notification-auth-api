@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.infrastructure.gateway;
 
-import com.dev.notification.app.auth.service.api.domain.Account;
+import com.dev.notification.app.auth.service.api.domain.entity.Account;
 import com.dev.notification.app.auth.service.api.domain.exception.template.RepositoryException;
 import com.dev.notification.app.auth.service.api.domain.gateway.AccountGateway;
 import com.dev.notification.app.auth.service.api.infrastructure.repository.AccountRepository;

@@ -1,4 +1,4 @@
-package com.dev.notification.app.auth.service.api.domain;
+package com.dev.notification.app.auth.service.api.domain.entity;
 
 import com.dev.notification.app.auth.service.api.domain.enums.EventType;
 import com.dev.notification.app.auth.service.api.domain.utils.IdentifierUtils;
