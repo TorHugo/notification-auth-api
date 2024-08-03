@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class SaveAccountUseCase {
+public class SaveAccount {
     private final AccountGateway accountGateway;
 
     public Account execute(final CreateAccountTopic saveAccount){

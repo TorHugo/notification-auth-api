@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ValidateTokenUseCase {
+public class ValidateToken {
     private final JwtTokenUtils jwtTokenUtils;
 
     public ValidToken execute(final String token){

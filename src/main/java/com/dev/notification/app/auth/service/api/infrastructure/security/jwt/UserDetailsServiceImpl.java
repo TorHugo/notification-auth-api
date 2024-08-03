@@ -1,6 +1,6 @@
 package com.dev.notification.app.auth.service.api.infrastructure.security.jwt;
 
-import com.dev.notification.app.auth.service.api.application.FindAccountByEmailUseCase;
+import com.dev.notification.app.auth.service.api.application.FindAccountByEmail;
 import com.dev.notification.app.auth.service.api.infrastructure.security.models.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,11 +12,11 @@ import static org.springframework.security.core.authority.AuthorityUtils.createA
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final FindAccountByEmailUseCase findAccountByEmailUseCase;
+    private final FindAccountByEmail findAccountByEmail;
 
     @Override
     public UserDetails loadUserByUsername(final String email){
-        final var account = findAccountByEmailUseCase.execute(email);
+        final var account = findAccountByEmail.execute(email);
         final var authorityAdminList = createAuthorityList("ROLE_USER", "ROLE_ADMIN");
         final var authorityUserList = createAuthorityList("ROLE_USER");
         final var authority = account.isAdmin() ? authorityAdminList : authorityUserList;

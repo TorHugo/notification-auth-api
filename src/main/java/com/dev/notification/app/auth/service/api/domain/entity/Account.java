@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Account {
 
     private final Email email;
-    private final String password;
+    private String password;
     private final boolean active;
     private final boolean admin;
     private boolean confirmed;
@@ -60,6 +60,11 @@ public class Account {
 
     public void isConfirmedAccount(){
         this.confirmed = true;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updatePassword(final String password) {
+        this.password = password;
         this.updatedAt = LocalDateTime.now();
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ConfirmedAccountUseCase {
+public class ConfirmedAccount {
 
     private final AccountGateway accountGateway;
 

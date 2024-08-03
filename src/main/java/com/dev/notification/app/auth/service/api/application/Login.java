@@ -1,6 +1,5 @@
 package com.dev.notification.app.auth.service.api.application;
 
-import com.dev.notification.app.auth.service.api.infrastructure.api.models.Login;
 import com.dev.notification.app.auth.service.api.infrastructure.security.jwt.JwtTokenUtils;
 import com.dev.notification.app.auth.service.api.infrastructure.security.models.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +11,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class LoginUseCase {
+public class Login {
     private final AuthenticationManager authenticationManager;
-    private final LastAccessUseCase lastAccessUseCase;
+    private final LastAccess lastAccess;
     private final JwtTokenUtils jwtTokenUtils;
 
-    public ResponseCookie execute(final Login value) {
+    public ResponseCookie execute(final com.dev.notification.app.auth.service.api.infrastructure.api.models.Login value) {
         final var authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         value.email(),
@@ -28,7 +27,7 @@ public class LoginUseCase {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final var userDetails = (UserDetailsImpl) authentication.getPrincipal();
         final var cookie = jwtTokenUtils.generateToken(userDetails);
-        lastAccessUseCase.execute(value.email());
+        lastAccess.execute(value.email());
         return cookie;
     }
 }
