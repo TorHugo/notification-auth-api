@@ -37,6 +37,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
                 if (!loadedUser.isEnabled())
                     throw new AccessDeniedException("User Disabled!");
+                // TODO: Validate to confirmed user.
 
                 final var authentication = new UsernamePasswordAuthenticationToken(
                         loadedUser,
