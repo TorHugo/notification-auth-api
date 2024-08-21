@@ -82,7 +82,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: torhugo/auth-service-api:${{ steps.increment_version.outputs.new_tag }}
+          tags: torhugo/notification-auth-api:${{ outputs.new_tag }}
 
   discord-notification:
     runs-on: ubuntu-latest
@@ -95,6 +95,6 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "Backend Auth-Service-API"
+          title: "notification-auth-api"
           description: "Build and Deploy to Docker"
           username: GitHub Actions

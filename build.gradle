@@ -12,7 +12,7 @@ java {
 }
 
 bootJar {
-    archiveFileName = 'auth-service-api.jar'
+    archiveFileName = 'notification-auth-api.jar'
 }
 
 repositories {
