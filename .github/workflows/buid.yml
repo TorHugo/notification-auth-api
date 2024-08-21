@@ -82,7 +82,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: torhugo/notification-auth-api:${{ outputs.new_tag }}
+          tags: torhugo/notification-auth-api:${{ steps.increment_version.outputs.new_tag }}
 
   discord-notification:
     runs-on: ubuntu-latest
